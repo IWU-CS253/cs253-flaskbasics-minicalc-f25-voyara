@@ -9,6 +9,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+
 @app.route('/calc', methods=['GET', 'POST'])
 def calc():
     current_value = ''
@@ -21,14 +22,19 @@ def calc():
 
     return render_template('calc.html', current_value=current_value)
 
+
 @app.route('/wordstats', methods=['GET', 'POST'])
 def wordstatsindex():
     if request.method == 'POST':
         user_string = request.form['user_string']
         average_length = wordstats.average_length(user_string)
-        return render_template('wordstats.html', average_length=average_length)
+        total_words = wordstats.total_words(user_string)
+        total_chars = wordstats.total_chars(user_string)
+        end_char = wordstats.end_char(user_string)
+        return render_template('wordstats.html', average_length=average_length, total_words=total_words, total_chars=total_chars, end_char=end_char)
     else:
         return render_template('wordstats.html', average_length=None)
+
 
 if __name__ == '__main__':
     app.run()
