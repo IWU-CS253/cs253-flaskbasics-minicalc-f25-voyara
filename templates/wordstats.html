@@ -15,8 +15,12 @@
     {%  if total_words is not none %}
         <p>Number of words: {{ total_words }}</p>
     {% endif %}
-    
+
     {% if total_chars is not none %}
         <p>Number of characters: {{ total_chars }}</p>
+    {% endif %}
+
+    {% if end_char is not none %}
+        <p>End character of each word: {{ end_char }}</p>
     {% endif %}
 {% endblock %}
